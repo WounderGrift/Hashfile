@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "94812bfc-28b9-4c7b-b9b8-40c75e770e10",
+		"name": "ParkingApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27452647"
+	},
+	"item": [
+		{
+			"name": "View",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"client\": {\r\n        \"name\": \"\",\r\n        \"gender\": \"\",\r\n        \"phone\": \"\"\r\n    },\r\n    \"car\": {\r\n        \"maker\": \"\",\r\n        \"model\": \"\",\r\n        \"color\": \"black\",\r\n        \"number\": \"\",\r\n        \"in_parking\": \"\"\r\n    },\r\n    \"limit\": 10\r\n}"
+				},
+				"url": {
+					"raw": "http://parkingapi/web/parking-api",
+					"protocol": "http",
+					"host": [
+						"parkingapi"
+					],
+					"path": [
+						"web",
+						"parking-api"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Black Cars",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client\": {\r\n        \"name\": \"\",\r\n        \"gender\": \"\",\r\n        \"phone\": \"\"\r\n    },\r\n    \"car\": {\r\n        \"maker\": \"\",\r\n        \"model\": \"\",\r\n        \"color\": \"black\",\r\n        \"number\": \"\",\r\n        \"in_parking\": \"\"\r\n    },\r\n    \"limit\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "All Cars",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client\": {\r\n        \"name\": \"\",\r\n        \"gender\": \"\",\r\n        \"phone\": \"\"\r\n    },\r\n    \"car\": {\r\n        \"maker\": \"\",\r\n        \"model\": \"\",\r\n        \"color\": \"\",\r\n        \"number\": \"\",\r\n        \"in_parking\": \"\"\r\n    },\r\n    \"limit\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"client\": {\r\n    \"id\": 13,\r\n    \"full_name\": \"Dmitrii\",\r\n    \"gender\":    \"male\",\r\n    \"phone\":     \"23779970\",\r\n    \"address\":   \"Zentenes iela 4\"\r\n  },\r\n  \"cars\": [\r\n    {\r\n      \"maker\":      \"Pantiac\",\r\n      \"model\":      \"omnis\",\r\n      \"color\":      \"Yellow\",\r\n      \"number\":     \"KjkSZPJ\",\r\n      \"in_parking\":  false\r\n    },\r\n    {\r\n      \"maker\":      \"Cadilac\",\r\n      \"model\":      \"velit\",\r\n      \"color\":      \"blue\",\r\n      \"number\":     \"GKFJD6\",\r\n      \"in_parking\": true\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://parkingapi/web/parking-api/create",
+					"protocol": "http",
+					"host": [
+						"parkingapi"
+					],
+					"path": [
+						"web",
+						"parking-api",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Cars to exists Client",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client\": {\r\n    \"id\": 4\r\n  },\r\n  \"cars\": [\r\n    {\r\n      \"maker\":      \"Pantiac\",\r\n      \"model\":      \"omnis\",\r\n      \"color\":      \"Yellow\",\r\n      \"number\":     \"KjkSZPJ\",\r\n      \"in_parking\": false\r\n    },\r\n    {\r\n      \"maker\":      \"Cadilac\",\r\n      \"model\":      \"velit\",\r\n      \"color\":      \"blue\",\r\n      \"number\":     \"GKFJD6\",\r\n      \"in_parking\": true\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api/create",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Create Client and Cars",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client\": {\r\n    \"full_name\": \"Dmitrii\",\r\n    \"gender\":    \"male\",\r\n    \"phone\":     \"23779970\",\r\n    \"address\":   \"Zentenes iela 4\"\r\n  },\r\n  \"cars\": [\r\n    {\r\n      \"maker\":      \"Pantiac\",\r\n      \"model\":      \"omnis\",\r\n      \"color\":      \"Yellow\",\r\n      \"number\":     \"KjkSZPJ\",\r\n      \"in_parking\":  false\r\n    },\r\n    {\r\n      \"maker\":      \"Cadilac\",\r\n      \"model\":      \"velit\",\r\n      \"color\":      \"blue\",\r\n      \"number\":     \"GKFJD6\",\r\n      \"in_parking\": true\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api/create",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"client\": {\r\n    \"id\": 13,\r\n    \"name\":     \"Dmitrii\",\r\n    \"gender\":    \"male\",\r\n    \"phone\":     \"67867876867876\",\r\n    \"address\":   \"RGRGFDHFDHFDHFDFDHFDH\"\r\n  },\r\n  \"cars\":[\r\n    {\r\n      \"id\":  26,\r\n      \"maker\":      \"KLJFJGFKJGFDKLSGFF\",\r\n      \"model\":      \"567657657\",\r\n      \"color\":      \"FHDGFDGHDFK\",\r\n      \"number\":     \"DFGFDFDGFDG\",\r\n      \"in_parking\": true\r\n    },\r\n    {\r\n      \"id\":  25,\r\n      \"maker\":      \"AAAAAAAAAAAAA\",\r\n      \"model\":      \"AAAAAAAAAAAAAAAA\",\r\n      \"color\":      \"AAA\",\r\n      \"number\":     \"AA\",\r\n      \"in_parking\": true\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://parkingapi/web/parking-api/update",
+					"protocol": "http",
+					"host": [
+						"parkingapi"
+					],
+					"path": [
+						"web",
+						"parking-api",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Client and Cars",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client\": {\r\n    \"id\": 7,\r\n    \"name\":     \"Dmitrii\",\r\n    \"gender\":    \"male\",\r\n    \"phone\":     \"67867876867876\",\r\n    \"address\":   \"RGRGFDHFDHFDHFDFDHFDH\"\r\n  },\r\n  \"cars\":[\r\n    {\r\n      \"id\":  26,\r\n      \"maker\":      \"KLJFJGFKJGFDKLSGFF\",\r\n      \"model\":      \"567657657\",\r\n      \"color\":      \"FHDGFDGHDFK\",\r\n      \"number\":     \"DFGFDFDGFDG\",\r\n      \"in_parking\": true\r\n    },\r\n    {\r\n      \"id\":  25,\r\n      \"maker\":      \"AAAAAAAAAAAAA\",\r\n      \"model\":      \"AAAAAAAAAAAAAAAA\",\r\n      \"color\":      \"AAA\",\r\n      \"number\":     \"AA\",\r\n      \"in_parking\": true\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api/update",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api",
+								"update"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Update Only Client",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"client\": {\r\n    \"id\": 13,\r\n    \"name\":     \"Dmitrii\",\r\n    \"gender\":    \"male\",\r\n    \"phone\":     \"67867876867876\",\r\n    \"address\":   \"RGRGFDHFDHFDHFDFDHFDH\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api/update",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api",
+								"update"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Update Only Cars",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cars\":[\r\n    {\r\n      \"id\":  5,\r\n      \"maker\":      \"JEEP\",\r\n      \"model\":      \"KJKS\",\r\n      \"color\":      \"PURPLE\",\r\n      \"number\":     \"6556\",\r\n      \"in_parking\": true\r\n    },\r\n    {\r\n      \"id\":  25,\r\n      \"maker\":      \"MAZDA\",\r\n      \"model\":      \"56GFS\",\r\n      \"color\":      \"Black\",\r\n      \"number\":     \"AAX\",\r\n      \"in_parking\": true\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api/update",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api",
+								"update"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete One Car",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "carId",
+							"value": "27",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://parkingapi/web/parking-api/delete-car",
+					"protocol": "http",
+					"host": [
+						"parkingapi"
+					],
+					"path": [
+						"web",
+						"parking-api",
+						"delete-car"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete One Car",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "carId",
+									"value": "27",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api/delete-car",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api",
+								"delete-car"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete Client And Cars",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientId",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://parkingapi/web/parking-api/delete-client",
+					"protocol": "http",
+					"host": [
+						"parkingapi"
+					],
+					"path": [
+						"web",
+						"parking-api",
+						"delete-client"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Client And All Cars",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "clientId",
+									"value": "27",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://parkingapi/web/parking-api/delete-client",
+							"protocol": "http",
+							"host": [
+								"parkingapi"
+							],
+							"path": [
+								"web",
+								"parking-api",
+								"delete-client"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

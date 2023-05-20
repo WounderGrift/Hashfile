@@ -1,0 +1,80 @@
+.container .form-group
+{
+    margin: 0 15px 15px 15px;
+}
+
+.btn
+{
+    margin-bottom: 10px;
+}
+
+.form-container
+{
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.custom-file
+{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.custom-file input
+{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin: 0;
+    opacity: 0;
+}
+
+.custom-file-label
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0.375rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.custom-file-input:focus .custom-file-label
+{
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-file-input:disabled .custom-file-label
+{
+    background-color: #e9ecef;
+}
+
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-table th, .file-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.file-table th {
+    background-color: #f2f2f2;
+}
+
+.file-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.file-table tr:hover {
+    background-color: #e6e6e6;
+}
