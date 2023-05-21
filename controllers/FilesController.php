@@ -5,7 +5,9 @@ namespace app\controllers;
 use app\models\Files;
 use yii\filters\Cors;
 use yii\helpers\Json;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 
 class FilesController extends Controller
 {
@@ -26,6 +28,9 @@ class FilesController extends Controller
     public function actionUpload()
     {
         $request   = \Yii::$app->request->bodyParams;
+        if (!$request['content'])
+            throw new ForbiddenHttpException('Failed to create hash from content');
+
         $hash      = hash_file('sha256', $request['content']);
         $fileModel = Files::find()->where(['hash' => $hash])->limit(1)->one();
 
@@ -40,9 +45,13 @@ class FilesController extends Controller
             ]));
 
             if (!$fileModel->validate())
-                return $this->asJson(['error' => $fileModel->errors]);
+                throw new ForbiddenHttpException($fileModel->errors);
 
-            $fileModel->content = file_get_contents($request['content']);
+            $fileContent = file_get_contents($request['content']);
+            if (!$fileContent)
+                throw new ForbiddenHttpException('Failed to read file content');
+
+            $fileModel->content = $fileContent;
             $fileModel->save();
 
             $info = 'файл создан';

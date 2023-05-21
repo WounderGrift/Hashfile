@@ -10,6 +10,7 @@ $this->title = 'Hash file library application';
     <div class="jumbotron text-center bg-transparent">
         <h1 class="display-4">Форма загрузки файла</h1>
 
+        <form onsubmit="return false;">
         <div class="form-container">
             <div class="form-group">
                 <label for="name">Название:</label>
@@ -18,8 +19,7 @@ $this->title = 'Hash file library application';
 
             <div class="form-group">
                 <label for="description">Описание:</label>
-                <textarea v-model="descriptionModel" class="form-control" id="description" name="description"
-                          required></textarea>
+                <textarea v-model="descriptionModel" class="form-control" id="description" name="description" required></textarea>
             </div>
 
             <div class="form-group">
@@ -30,13 +30,13 @@ $this->title = 'Hash file library application';
                 </div>
             </div>
 
-            <button @click="uploadFile()" class="btn btn-lg btn-success">Загрузить</button>
+            <button  @click="uploadFile()" class="btn btn-lg btn-success">Загрузить</button>
             <button @click="clearFields()" class="btn btn-lg btn-close"></button>
         </div>
-
+        </form>
     </div>
 
-    <div class="jumbotron text-center bg-transparent" style="margin-top: 30px" v-if="fileInDatabase">
+    <div class="jumbotron text-center bg-transparent" style="margin-top: 30px" v-if="fileInDatabase && canDisplayInfo">
         <div class="jumbotron text-center bg-transparent">
             <h1 class="display-4">Информация о файле</h1>
             <div class="form-container">
@@ -46,7 +46,7 @@ $this->title = 'Hash file library application';
                         <th>Description</th>
                         <th>Type</th>
                         <th>Size</th>
-                        <th>Content</th>
+                        <th v-if="canDisplayContent">Content</th>
                         <th>Date Created</th>
                         <th>Report</th>
                     </tr>
@@ -55,7 +55,7 @@ $this->title = 'Hash file library application';
                         <td>{{fileInDatabase.description}}</td>
                         <td>{{fileInDatabase.type}}</td>
                         <td>{{fileInDatabase.size}}</td>
-                        <td><img v-bind:src="this.fileModel" width="150" height="100"></td>
+                        <td v-if="canDisplayContent"><img v-bind:src="this.fileModel" width="150" height="100"></td>
                         <td>{{fileInDatabase.date_create}}</td>
                         <td>{{fileInDatabase.info}}</td>
                     </tr>
@@ -63,6 +63,7 @@ $this->title = 'Hash file library application';
             </div>
         </div>
     </div>
+
 </div>
 
 <script type="module">
@@ -74,11 +75,15 @@ $this->title = 'Hash file library application';
             selectFile: 'Выберите файл',
             fileModel: null,
             fileInfo: '',
-            fileInDatabase: null
+            fileInDatabase: null,
+            canDisplayContent: false
         },
         methods: {
             fileSelect(ev)
             {
+                this.canDisplayInfo    = false;
+                this.canDisplayContent = false;
+
                 let tgt   = ev.target || window.event.srcElement;
                 let files = tgt.files;
                 if (files[0] == null)
@@ -100,26 +105,42 @@ $this->title = 'Hash file library application';
             },
             clearFields()
             {
-                this.nameModel        = '';
-                this.descriptionModel = '';
-                this.selectFile       = 'Выберите файл';
-                this.fileModel        = null;
-                this.fileInDatabase   = null;
+                this.nameModel         = '';
+                this.descriptionModel  = '';
+                this.selectFile        = 'Выберите файл';
+                this.fileModel         = null;
+                this.fileInDatabase    = null;
+
+                this.canDisplayInfo    = false;
+                this.canDisplayContent = false;
             },
             async uploadFile()
             {
                 this.fileInDatabase = await $.ajax({
-                    url:      'http://hashfile/web/files/upload',
-                    type:     'POST',
+                    url: 'http://hashfile/web/files/upload',
+                    type: 'POST',
                     dataType: 'json',
                     data: {
-                        name:        this.nameModel,
+                        name: this.nameModel,
                         description: this.descriptionModel,
-                        type:        this.fileInfo.type,
-                        size:        this.fileInfo.size,
-                        content:     this.fileModel
+                        type: this.fileInfo.type,
+                        size: this.fileInfo.size,
+                        content: this.fileModel
                     },
                 });
+
+                this.canDisplayInfo    = !!this.fileInDatabase;
+                this.canDisplayContent = this.isImage();
+            },
+            isImage()
+            {
+                let mimeTypes = [
+                    'image/jpeg',
+                    'image/png',
+                    'image/gif',
+                ];
+
+                return mimeTypes.includes(this.fileInDatabase.type)
             }
         }
     });
