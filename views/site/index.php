@@ -2,7 +2,7 @@
 $this->title = 'Hash file library application';
 ?>
 
-<link rel="stylesheet" href="/web/css/index.css">
+<link rel="stylesheet" href="css/index.css">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 
 
@@ -30,7 +30,7 @@ $this->title = 'Hash file library application';
                 </div>
             </div>
 
-            <button  @click="uploadFile()" class="btn btn-lg btn-success">Загрузить</button>
+            <button @click="uploadFile()" class="btn btn-lg btn-success">Загрузить</button>
             <button @click="clearFields()" class="btn btn-lg btn-close"></button>
         </div>
         </form>
@@ -76,7 +76,8 @@ $this->title = 'Hash file library application';
             fileModel: null,
             fileInfo: '',
             fileInDatabase: null,
-            canDisplayContent: false
+            canDisplayContent: false,
+            target: null
         },
         methods: {
             fileSelect(ev)
@@ -84,8 +85,8 @@ $this->title = 'Hash file library application';
                 this.canDisplayInfo    = false;
                 this.canDisplayContent = false;
 
-                let tgt   = ev.target || window.event.srcElement;
-                let files = tgt.files;
+                this.target = ev.target;
+                let files   = this.target.files;
                 if (files[0] == null)
                     return;
 
@@ -98,10 +99,11 @@ $this->title = 'Hash file library application';
                 fr.readAsDataURL(files[0]);
 
                 this.fileInfo   = {
-                    type: tgt.files[0].type,
-                    size: tgt.files[0].size,
+                    type: this.target.files[0].type,
+                    size: this.target.files[0].size,
                 };
-                this.selectFile = tgt.files[0].name;
+
+                this.selectFile = files[0].name;
             },
             clearFields()
             {
@@ -110,6 +112,7 @@ $this->title = 'Hash file library application';
                 this.selectFile        = 'Выберите файл';
                 this.fileModel         = null;
                 this.fileInDatabase    = null;
+                this.target.value      = '';
 
                 this.canDisplayInfo    = false;
                 this.canDisplayContent = false;
@@ -117,15 +120,15 @@ $this->title = 'Hash file library application';
             async uploadFile()
             {
                 this.fileInDatabase = await $.ajax({
-                    url: 'http://hashfile/web/files/upload',
+                    url: 'http://f0821472.xsph.ru/hashfile/web/files/upload',
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        name: this.nameModel,
+                        name:        this.nameModel,
                         description: this.descriptionModel,
-                        type: this.fileInfo.type,
-                        size: this.fileInfo.size,
-                        content: this.fileModel
+                        type:        this.fileInfo.type,
+                        size:        this.fileInfo.size,
+                        content:     this.fileModel
                     },
                 });
 

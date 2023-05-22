@@ -28,6 +28,7 @@ class FilesController extends Controller
     public function actionUpload()
     {
         $request   = \Yii::$app->request->bodyParams;
+
         if (!$request['content'])
             throw new ForbiddenHttpException('Failed to create hash from content');
 

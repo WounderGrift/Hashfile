@@ -15,6 +15,14 @@ $config = [
         'formatter' => [
             'locale' => 'ru_RU'
         ],
+        'corsFilter' => [
+            'class' => \yii\filters\Cors::class,
+            'cors' => [
+                'Origin' => ['*'],
+                'Access-Control-Request-Method' => ['GET', 'POST', 'OPTIONS'],
+                'Access-Control-Request-Headers' => ['Content-Type'],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey'  => '657567657',
@@ -53,10 +61,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules' => [
-                'GET       http://hashfile/web/<controller:[^/:]*>'            => '<controller>/index',
-                'PUT,PATCH http://hashfile/web/<controller:[^/]*>/<id:[^/:]+>' => '<controller>/update',
-                'POST      http://hashfile/web/<controller:[^/:]*>'            => '<controller>/upload',
-                'DELETE    http://hashfile/web/<controller:[^/]*>/<id:[^/:]+>' => '<controller>/delete',
+                'GET       http://f0821472.xsph.ru/hashfile/web/<controller:[^/:]*>'            => '<controller>/index',
+                'PUT,PATCH http://f0821472.xsph.ru/hashfile/web/<controller:[^/]*>/<id:[^/:]+>' => '<controller>/update',
+                'POST      http://f0821472.xsph.ru/hashfile/web/<controller:[^/:]*>'            => '<controller>/upload',
+                'DELETE    http://f0821472.xsph.ru/hashfile/web/<controller:[^/]*>/<id:[^/:]+>' => '<controller>/delete',
                 //'http://hashfile/web/<controller:[^/]*>/:<action>'             => '<controller>/<action>',
             ],
         ],
